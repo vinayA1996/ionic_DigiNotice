@@ -7,14 +7,13 @@ import { NoticeService } from 'src/app/services/notice.service';
   templateUrl: './search-panel.component.html',
   styleUrls: ['./search-panel.component.scss'],
 })
-export class SearchPanelComponent  implements OnInit {
-
+export class SearchPanelComponent implements OnInit {
   searchForm: FormGroup;
   NoticeType: any = [];
-  stateList:State[]=[];
-  constructor(  private notice: NoticeService,) {
+  stateList: State[] = [];
+  constructor(private notice: NoticeService) {
     this.searchForm = new FormGroup({
-      searchText: new FormControl('')
+      searchText: new FormControl(''),
     });
   }
 
@@ -25,11 +24,10 @@ export class SearchPanelComponent  implements OnInit {
 
   onSubmit() {
     const searchText = this.searchForm.get('searchText').value;
-    console.log(searchText)
+    console.log(searchText);
   }
-  //------------dropdowns
 
-
+  //------------get data fron api------------------//
   getNoticeType() {
     this.notice.getNoticeType().subscribe((r) => {
       this.NoticeType = r;
@@ -44,9 +42,35 @@ export class SearchPanelComponent  implements OnInit {
     });
   }
 
-  checkboxClicked(event:any){
-    console.log("ee"+event)
+  //------------Notice Type dropdowns------------------//
+
+  checkboxClicked(event: any) {
+    console.log(event);
   }
+  selectAll: boolean = false;
+  ids: any = '';
+  selectAllCheckboxes() {
+    this.ids = '';
+    this.selectAll = !this.selectAll;
+    for (let notice of this.NoticeType) {
+      notice.checked = !this.selectAll;
+      if (this.selectAll) this.ids = this.ids + ',' + notice.id;
+    }
+    console.log(this.ids);
+  }
+  onCheckboxChange(notice: { name: string }, event: any) {
+    if (notice.name === 'All') {
+      this.selectAll = event.detail.checked;
+    } else {
+      if (event.detail.checked) {
+        this.selectAll = this.NoticeType.every((notice) => notice.checked);
+        this.ids = this.ids + ',' + event.detail.value;
+      } else {
+        this.selectAll = false;
+      }
+    }
 
-
+    console.log(this.ids);
+  }
+  onSaveNoticeType() {}
 }

@@ -10,10 +10,12 @@ ion-button.grey {
   font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .lowercase-placeholder {
   text-transform: lowercase;
   text-transform: capitalize;
 }
+
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
@@ -23,9 +25,9 @@ ion-button.grey {
 }
 
 ion-modal.notice-type {
-  --height: 50%;
-  --width: 80%;
-  --border-radius: 16px;
+  --height: 95%;
+  --width: 90%;
+  --border-radius: 34px;
   --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
   background-color: rgba(13, 67, 105, 0.76);
@@ -37,12 +39,16 @@ ion-modal.notice-type::part(backdrop) {
 }
 
 ion-modal.notice-type ion-toolbar {
-    text-align: center;
+  text-align: center;
   --background: rgb(223, 240, 251);
-
   --color: var(--ion-color-primary);
 }
 
+.notice-type .title-default {
+  font-size: 18px;
+  font-family: arial;
+  font-weight: 800;
+}
 
 .modal-body {
   background-color: rgb(223, 240, 251) !important;
@@ -64,24 +70,61 @@ ion-button.close {
   font-weight: 900;
   top: 12px;
   right: 18px;
-  padding: 1px 0px 2px 0px;
 }
+
+ion-button.close::part(native) {
+  padding: 2px 6px 2px 6px !important;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  border-radius: 100% !important;
+}
+
 .lowercase-placeholder {
   text-transform: lowercase;
   text-transform: capitalize;
 }
 
-::ng-deep .button-native {
- padding-inline-start: 0;
- padding-inline-end: 0;
- padding-top: 0;
- padding-bottom:0;   
+.list {
+  background-color: rgb(223, 240, 251);
 }
-.list{
-    background-color: rgb(223, 240, 251) ;
+
+.list ion-item::part(native) {
+  //WRITE ALL YOUR CSS RULES HERE
+  background-color: rgb(223, 240, 251);
+  /** and lots more **/
 }
-.list ion-item::part(native){
-    //WRITE ALL YOUR CSS RULES HERE
-background-color: rgb(223, 240, 251) ;
-    /** and lots more **/
-  }
+
+.notice-type ion-checkbox {
+  --size: 18px;
+  --checkbox-background-checked: rgb(7, 65, 105);
+  --checkbox-background: rgb(223, 240, 251);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(7, 65, 105);
+  padding-left: 22px;
+}
+
+.notice-type ion-checkbox::part(container) {
+  border-radius: 4px;
+  border: 2px solid rgb(7, 65, 105);
+}
+
+ion-button.save {
+  --background: rgb(174, 203, 6);
+  --background-hover: #9ce0be;
+  --background-activated: #88f4be;
+  --background-focused: #88f4be;
+  --color: white;
+  --border-radius: 6px;
+  --box-shadow: 0 0px 0px 0 rgb(0, 0, 0, 0.25);
+  --ripple-color: rgb(13, 66, 105);
+  font-size: 11px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ion-button.save::part(native) {
+  padding: 12px 30px 12px 30px !important;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
