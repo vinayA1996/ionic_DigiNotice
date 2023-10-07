@@ -1,0 +1,141 @@
+
+<ion-content>
+  <div class="d-flex justify-content-center align-items-center" style="height:13%;">
+    <img style="width: 40%;"
+      src="./assets/images/DigiNoticelogo.png"
+      alt="Diginotice">
+  </div>
+  <div class="card-container">
+    <ion-card style="border-radius: 29px; padding: 15px; background-color: #ecf7fd;">
+      <ion-card-header style="text-align: center;">
+        <ion-card-title style="font-weight: 800;">SIGN UP</ion-card-title>
+      </ion-card-header>
+      <div>
+        <form [formGroup]="registrationForm"  style="margin-bottom: 40px;">
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('firstName').touched || registrationForm.get('firstName').dirty) && registrationForm.get('firstName').errors)}">
+            <div class="input-icon">
+              <input formControlName="firstName" name="firstName" (keypress)="sharedModel.lettersOnly($event)"
+                class="form-control placeholder-no-fix input-s" type="text" autocomplete="off"
+                placeholder="Enter First Name">
+              <span class="text-danger" *ngIf="((registrationForm.get('firstName').touched ||
+                         registrationForm.get('firstName').dirty) &&
+                         registrationForm.get('firstName').errors)">
+                <span *ngIf="registrationForm.get('firstName').errors['required']">
+                  First Name is Required
+                </span>
+                <span *ngIf="registrationForm.get('firstName').errors['minlength'] ||
+                         registrationForm.get('firstName').errors['maxlength']">
+                  First Name must be between 2 and 10 characters
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('lastName').touched || registrationForm.get('lastName').dirty) && registrationForm.get('lastName').errors)}">
+            <div class="input-icon">
+              <input formControlName="lastName" name="lastName" (keypress)="sharedModel.lettersOnly($event)"
+                class="form-control placeholder-no-fix input-s" type="text" autocomplete="off"
+                placeholder="Enter Last Name">
+              <span class="text-danger" *ngIf="((registrationForm.get('lastName').touched ||
+                         registrationForm.get('lastName').dirty) &&
+                         registrationForm.get('lastName').errors)">
+                <span *ngIf="registrationForm.get('lastName').errors['required']">
+                  Last Name is Required
+                </span>
+                <span *ngIf="registrationForm.get('lastName').errors['minlength'] ||
+                         registrationForm.get('lastName').errors['maxlength']">
+                  Last Name must be between 2 and 10 characters
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('email').touched || registrationForm.get('email').dirty) && registrationForm.get('email').errors)}">
+            <div class="input-icon">
+              <input formControlName="email" name="email" class="form-control placeholder-no-fix input-s" type="email"
+                autocomplete="off" placeholder="Enter Email">
+              <span class="text-danger" *ngIf="((registrationForm.get('email').touched ||
+                         registrationForm.get('email').dirty) &&
+                         registrationForm.get('email').errors)">
+                <span *ngIf="registrationForm.get('email').errors['required']">
+                  Email is Required
+                </span>
+                <span *ngIf="registrationForm.get('email').errors['email']">
+                  Email is Invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('phone').touched || registrationForm.get('phone').dirty) && registrationForm.get('phone').errors)}">
+            <div class="input-icon">
+              <input id="TxtPhoneNumber" minlength="10" maxlength="10" formControlName="phone" name="phone"
+                class="form-control placeholder-no-fix input-s" type="text" autocomplete="off"
+                placeholder="Enter Phone">
+              <span class="text-danger" *ngIf="((registrationForm.get('phone').touched ||
+                         registrationForm.get('phone').dirty) &&
+                         registrationForm.get('phone').errors)">
+                <span *ngIf="registrationForm.get('phone').errors['required']">
+                  Phone is Required
+                </span>
+                <span *ngIf="registrationForm.get('phone').hasError('pattern')">
+                  Phone is Invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('password').touched || registrationForm.get('password').dirty) && registrationForm.get('password').errors)}">
+            <div class="input-icon">
+              <input formControlName="password" name="password" class="form-control placeholder-no-fix input-s"
+              type="{{ showPassword ? 'text' : 'password' }}" autocomplete="off" placeholder="Enter Password">
+              <span class="toggle-password" (click)="togglePasswordVisibility()">
+                <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+              </span>
+              <span class="text-danger" *ngIf="((registrationForm.get('password').touched ||
+                         registrationForm.get('password').dirty) &&
+                         registrationForm.get('password').errors)">
+                <span *ngIf="registrationForm.get('password').errors['required']">
+                  Password is Required
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="{'has-error': ((registrationForm.get('confirmPassword').touched || registrationForm.get('confirmPassword').dirty) && registrationForm.get('confirmPassword').errors)}">
+            <div class="input-icon">
+              <input formControlName="confirmPassword" name="confirmPassword"
+                class="form-control placeholder-no-fix input-s" type="{{ showPassword ? 'text' : 'password' }}" autocomplete="off"
+                placeholder="Confirm Password">
+              <span class="toggle-password" (click)="togglePasswordVisibility()">
+                <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+              </span>
+            </div>
+            <span class="text-danger"
+              *ngIf="((registrationForm.get('confirmPassword').touched || registrationForm.get('confirmPassword').dirty) && registrationForm.get('confirmPassword').errors)">
+              <span *ngIf="registrationForm.get('confirmPassword').errors['required']">Confirm Password is
+                Required</span>
+              <div *ngIf="registrationForm.get('confirmPassword').errors['mustMatch']">Password Must Match</div>
+            </span>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <ion-checkbox labelPlacement="end"  (ionChange)="onAgreedToTerms()"
+              id="isAgreedToTerms"></ion-checkbox>
+            <ion-label style="margin-left: 8px;">Agree to Diginotice's <span></span>&nbsp;<a style="color: blue;"
+              id="open-modal" >Privacy and Terms</a>.</ion-label>
+          </div>
+          <div style="text-align: center;margin-top: 10px;">
+            <ion-button expand="block"
+              [disabled]="!isAgreedToTerms || !registrationForm.valid" (click)="Submit()">REGISTER</ion-button>
+          </div>
+          <div style="text-align: center;margin-top: 10px;">
+            <p style="margin-top: 10px;">Already have an account?</p>
+            <ion-button expand="block" class="my-button" (click)="goToLogin()">LOG IN</ion-button>
+          </div>
+        </form>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+<app-dgnotice-terms></app-dgnotice-terms>

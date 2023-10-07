@@ -1,0 +1,183 @@
+
+
+ion-menu::part(backdrop) {
+    background-color: rgba(255, 0, 255, 0.5);
+  }
+  
+  ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+  
+   // box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
+  }
+  
+
+  // ion-content{
+  //   --background: #afdcf2;
+  // }
+
+  ion-card-content{
+    text-align: center;
+  }
+
+  // img{
+  //   height: 1.5rem;
+  //   width: auto;
+  //   max-width: none;
+  // }
+
+  .col-4{
+    padding:3px;
+  }
+ .row{
+  padding-left: 17px;
+  padding-right: 17px;
+  }
+
+  .iconcard{
+   border-radius:5px;
+   height:5.6rem;
+   margin: 0px;
+   background-color: #ffffff;
+  }
+  i{
+    color:#64b1b9
+  }
+  .iconcard.active {
+    background-color: #0d4269!important;
+    i{
+      color:#ffffff;
+    }
+    .label{
+      color: #ffffff;
+    }
+  }
+  .notification-badge {
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-top: -10px;
+    margin-right: -10px;
+    align-self: flex-start;
+  }
+  .notification-badge1 {
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    padding: 1px 6px;
+    border-radius: 100%;
+    position: absolute;
+    top: 1px;
+    right: 9px;
+  }
+  
+  
+  .icon-image{
+    max-height: 38.33px;
+    max-width: 31.55px;
+  }
+  .label{
+    text-align: center;
+    font-size: 10px;
+    font-weight:900;
+    color: black;
+  }
+
+  .menuText{
+    
+    text-align:center;
+    align-items: center;
+  justify-content: center;
+    
+    color:black;
+    font-weight:500;
+    font-size: 11px;
+  }
+  .header-md{
+    box-shadow:none;
+  }
+  ion-footer{
+    background-color:#82d8df;
+  }
+
+  ion-footer.footer-toolbar-padding ion-toolbar:last-of-type{
+    --background:#82d8df;
+    --padding-bottom:10px;
+    --padding-top:10px;
+  }
+
+  .card-content-md{
+    padding-inline-start:12px;
+  }
+
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 44px;
+    color: rgb(100, 177, 185);
+}
+.notification{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 22px;
+ color: rgb(58, 191, 229);
+  margin-top: -28px;
+}
+.menu-header h2 {
+  font-family: Arial, sans-serif;
+  color: rgb(13, 66, 105);
+  font-size: 20px;
+}
+.menu-header .name{
+  font-family: Arial, sans-serif !important;
+  color: rgb(13, 66, 105) !important;
+  font-size: 18px !important;
+  font-weight: 600;
+}
+
+.menu-header h3{
+  font-weight: 500;
+  font-family: Arial, sans-serif !important;
+
+  color: rgb(13, 66, 105) !important;
+
+}
+
+.col-3.text-center1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.row.no-padding >* {
+  padding-right: 0;
+  padding-left: 0;
+
+
+}
+.logout{
+  color: black !important;
+  font-size: 20px !important;
+
+  
+}
+.logout-wrapper{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+ion-card {
+  box-shadow: none !important;
+}
+ion-button {
+  --background: rgb(255, 255, 255);
+  --background-hover: rgb(255, 255, 255);
+  --background-activated: rgb(255, 255, 255);
+  --background-focused: rgb(255, 255, 255);
+  --box-shadow: 0 0px 0px 0 ;
+  border-radius: 5px;
+}

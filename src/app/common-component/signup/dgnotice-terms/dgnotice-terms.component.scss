@@ -1,0 +1,49 @@
+.modal-dialog{
+    width: 90%;
+}
+
+.modal-title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.modal-body{
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .modal-dialog{
+        width: 94%;
+    }
+    ol{
+        padding: 24px;
+    }
+  }
+
+
+  ion-modal {
+    --height: 94%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --background:#ecf7fd;
+  }
+  
+  ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+  
+  ion-modal ion-toolbar {
+    --background: #ecf7fd;
+    --color: rgb(0, 0, 0);
+  }
+
+  .sticky-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+   
+  }
+  

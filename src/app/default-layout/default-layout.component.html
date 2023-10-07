@@ -1,0 +1,415 @@
+<ion-app>
+  <ion-menu contentId="main-content" menuId="myMenu">
+    <ion-content style="--background: #afdcf2">
+      <ion-list id="inbox-list" style="background-color: #afdcf2">
+        <ion-card style="margin-left: 0px; border-top-right-radius: 20px">
+          <div class="row">
+            <div class="col-4" style="padding-left: 0px; padding-right: 0px">
+              <ion-card-content>
+                <img
+                  style="width: auto; height: 3rem; max-width: none"
+                  alt="DigiNotice"
+                  src="./assets/images/DigiNoticelogo.png"
+                />
+              </ion-card-content>
+            </div>
+            <div class="col-2">
+              <ion-card-content>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div style="display: flex; align-items: center">
+                    <img
+                      alt="Refresh"
+                      style="height: 1.5rem; max-width: none; margin-top: 9px"
+                      src="./assets/icon/refresh.png"
+                    />
+                    <div style="padding-left: 5px">
+                      <p style="padding-top: 10px">Today's<br />Notices</p>
+                    </div>
+                  </div>
+                  <span class="material-icons notification">
+                    mark_chat_unread
+                  </span>
+                </div>
+              </ion-card-content>
+            </div>
+            <div class="col-6"></div>
+          </div>
+        </ion-card>
+        <ion-card style="margin-left: 0px; border-bottom-right-radius: 20px">
+          <div class="row no-padding" >
+            <div class="col-3 text-center1" >
+              <span style="text-align: left">
+                <span class="material-icons" style="font-size: 90px;" *ngIf="!profilePhoto" > 
+                  person
+                  </span>
+                  <span  *ngIf="profilePhoto"  >
+                    <img [src]="profilePhoto" alt="" style="border-radius: 50%;" >
+                  </span>
+              </span>
+            </div>
+            <div class="col-9" style="padding-left: 6px;" >
+              <ion-card-content style="text-align: left" class="menu-header" *ngIf="user">
+                <h2 > <em>Hello !</em> </h2>
+                <h1 class="name">{{user.firstName | titlecase}} {{user.lastName | titlecase}}</h1>
+                <h3 style="font-size: 10px; color: black">
+                 {{user.email}}
+                </h3>
+              </ion-card-content>
+            </div>
+            <!-- <div class="col-3">
+            </div> -->
+          </div>
+        </ion-card>
+      </ion-list>
+      <div class="row">
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/home']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <span class="material-icons"> home </span>
+              <p class="label">Home</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/my-profile']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <a>
+              <ion-card-content>
+                <span class="material-icons"> folder_shared </span>
+                <p class="label">My Profile</p>
+              </ion-card-content>
+            </a>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/bookmark']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content style="position: relative">
+              <span class="material-icons"> bookmark </span>
+              <p class="label">Bookmark</p>
+              <span class="notification-badge1">3</span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/asset-manager']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="bookmark"
+                src="./assets/icon/assets-manager.png"
+              />
+              <p class="label">Asset Manager</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/matched-notices']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content style="position: relative">
+              <img
+                class="icon-image"
+                alt="matched-notice"
+                src="./assets/icon/match-notice.png"
+              />
+              <p class="label">Matched Notice</p>
+              <span class="notification-badge1">3</span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/notification-settings']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="notification"
+                src="./assets/icon/notification-setting.png"
+              />
+              <p class="label">Notification Settings</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/share']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="share"
+                src="./assets/icon/share.png"
+              />
+              <p class="label">Share</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/help']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <img class="icon-image" alt="help" src="./assets/icon/help.png" />
+              <p class="label">Help</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="col-4">
+          <ion-card
+            class="iconcard"
+            [routerLink]="['./home/about-app']"
+            routerLinkActive="active"
+            detail="false"
+            (click)="closeMenu()"
+          >
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="about"
+                src="./assets/icon/about-app.png"
+              />
+              <p class="label">About App</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+      <ion-card>
+        <ion-card-content>
+          <div style="display: inline-flex">
+            <div>
+              <img
+                class="icon-image"
+                alt="about"
+                src="./assets/icon/phone.png"
+              />
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div>
+              <p style="font-weight: 900; color: #0d4269; margin-top: 5px">
+                Contact Us
+              </p>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-button expand="block"  style="margin: 10px; background-color: white;"  fill="solid">
+      
+        <div class="logout-wrapper">
+           
+          <span class="material-icons logout" >
+            power_settings_new
+            </span>
+          <span style="font-weight: 800; color: black; margin-top: 1px">
+            Logout
+          </span>
+        </div>
+      
+      </ion-button> 
+      <!-- <ion-card>
+        <ion-card-content style="padding-top: 5px;padding-bottom: 5px;" > 
+          <div style="display: inline-flex" >
+            <div class="logout-wrapper">
+           
+              <span class="material-icons logout" >
+                power_settings_new
+                </span>
+              <span style="font-weight: 800; color: black; margin-top: 1px">
+                Logout
+              </span>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card> -->
+      <br>
+      <br>
+      <div class="menuText">
+        <p>
+          Designed by  <b >Organic Square Design Studio </b><br>Developed by <b>ABC Technology</b>
+        </p>
+      </div>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button
+            ><img
+              class="icon-image"
+              alt="home"
+              src="./assets/icon/dots-menu.png"
+          /></ion-menu-button>
+        </ion-buttons>
+        <ion-title style="text-align: center">
+          <img
+            style="width: auto; height: 3rem; max-width: none"
+            alt="bookmark"
+            src="./assets/images/DigiNoticelogo.png"
+          />
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button>
+            <a href="tel:+917720054444"
+              ><img
+                class="icon-image"
+                alt="about"
+                src="./assets/icon/phone.png" /></a
+          ></ion-button>
+        </ion-buttons>
+        <!-- <ion-title>Menu</ion-title> -->
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding"
+      ><ion-router-outlet
+        style="margin-left: 10px; margin-right: 10px"
+      ></ion-router-outlet
+    ></ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-card class="iconcard" style="height: 4rem">
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="home"
+                src="./assets/icon/home1.png"
+              />
+              <p
+                class="label"
+                style="font-size: 8px; font-weight: 900; color: black"
+              >
+                &nbsp;&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-buttons>
+        <div class="row">
+          <div class="col-6" style="padding: 0px">
+            <ion-card class="iconcard" style="height: 4rem">
+              <ion-card-content>
+                <div style="display: inline-flex">
+                  <div>
+                    <img
+                      style="width: auto; height: 2.4rem; max-width: none"
+                      alt="asset-manager"
+                      src="./assets/icon/assets-manager.png"
+                    />
+                  </div>
+                  <div>
+                    <p
+                      class="label"
+                      style="
+                        font-size: 8px;
+                        font-weight: 900;
+                        color: black;
+                        margin-top: 10px;
+                      "
+                    >
+                      &nbsp; Asset Manager
+                    </p>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="col-6" style="padding: 0px; padding-left: 5px">
+            <ion-card class="iconcard" style="height: 4rem">
+              <ion-card-content>
+                <!-- <img style="width:auto;height: 1.9rem;max-width: none;" alt="bookmark"
+                  src="./assets/icon/match-notice.png" />
+                <p class="label" style="font-size:6px;font-weight: 900;color: black;">Matched Notices</p>
+               -->
+
+                <div style="display: inline-flex">
+                  <div>
+                    <img
+                      style="width: auto; height: 2.4rem; max-width: none"
+                      alt="matched-Notices"
+                      src="./assets/icon/match-notice.png"
+                    />
+                  </div>
+                  <div>
+                    <p
+                      class="label"
+                      style="font-size: 8px; font-weight: 900; color: black"
+                    >
+                      &nbsp; Matched Notices
+                    </p>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+
+        <ion-buttons slot="end">
+          <ion-card class="iconcard" style="height: 4rem">
+            <ion-card-content>
+              <img
+                class="icon-image"
+                alt="bookmark"
+                src="./assets/icon/bookmark1.png"
+              />
+              <p
+                class="label"
+                style="font-size: 8px; font-weight: 900; color: black"
+              >
+                Bookmark
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</ion-app>

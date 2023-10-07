@@ -1,0 +1,46 @@
+.input-icon {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+::placeholder {
+    /* Change the placeholder color to red */
+    color: #989fa5;
+    text-align: left;
+}
+
+
+ion-checkbox {
+    --size: 20px;
+    --checkbox-background-checked: #0d4269;
+}
+
+ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: 2px solid #0d4269;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+ion-button {
+    --background: #0d4269;
+}
+
+.my-button {
+    --background: #bcd800;
+}

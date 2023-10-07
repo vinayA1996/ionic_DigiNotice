@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-center align-items-center" style="height:20%;">
+  <img style="width: 50%;"
+    src="./assets/images/DigiNoticelogo.png"
+    alt="The Wisconsin State Capitol building in Madison, WI at night">
+</div>
+<ion-content>
+  <div class="card-container">
+    <ion-card style="border-radius: 29px; padding: 15px; background-color: #ecf7fd;">
+      <div *ngIf="formToggle=='SendOTP'">
+        <ion-card-header style="text-align: center;">
+          <ion-card-title>LOGIN</ion-card-title>
+        </ion-card-header>
+        <form [formGroup]="otpForm" (submit)="saveContact()" novalidate style="margin-bottom: 40px;">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Mobile Number" formControlName="email">
+            <div style="text-align: left; font-size: 13px;">
+              <span class="help-block"
+                *ngIf="((otpForm.get('email').touched || otpForm.get('email').dirty) && otpForm.get('email').errors)">
+                <span class="text-danger" *ngIf="otpForm.get('email').errors['required']">
+                  Mobile Number is Required
+                </span>
+                <span class="text-danger" *ngIf="otpForm.get('email').errors['email']">
+                  Mobile Number is Invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div style="margin-top: 10px;">
+            <ion-button [disabled]="!otpForm.valid ||otpForm.controls['email'|| 'password'].invalid" (click)="sendOtp()"
+              expand="block">GET OTP</ion-button>
+          </div>
+
+          <div style="text-align: center;margin-top: 10px;">
+            <p style="margin-top: 10px;">OR</p>
+            <button style="margin-top: 0px;background-color: transparent;" (click)="ChangeLoginType();">LOGIN WITH
+              EMAIL</button>
+            <p style="margin-top: 10px;">Don't Have an account?</p>
+            <ion-button expand="block" (click)="goToSignUp()">Register</ion-button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="formToggle=='EmailPassword'">
+        <ion-card-header style="text-align: center;">
+          <ion-card-title>SIGN IN WITH EMAIL </ion-card-title>
+        </ion-card-header>
+
+        <form [formGroup]="loginForm" novalidate style="margin-bottom: 40px;">
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Email Address" formControlName="email">
+            <div style="text-align: left; font-size: 13px;">
+              <span class="help-block"
+                *ngIf="((loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors)">
+                <span class="text-danger" *ngIf="loginForm.get('email').errors['required']">
+                  Email is Required
+                </span>
+                <span class="text-danger" *ngIf="loginForm.get('email').errors['email']">
+                  Email is Invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 10px;">
+            <input type="text" class="form-control" placeholder="Enter Password" formControlName="password">
+            <div style="text-align: left; font-size: 13px;">
+              <span class="help-block"
+                *ngIf="((loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors)">
+                <span class="text-danger" *ngIf="loginForm.get('password').errors['required']">
+                  Password is Required
+                </span>
+                <span class="text-danger" *ngIf="loginForm.get('password').errors['password']">
+                  Password is Invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div style="margin-top: 10px;">
+            <ion-button [disabled]="!loginForm.valid ||loginForm.controls['email'|| 'password'].invalid"
+              (click)="onSubmit()" expand="block">LOGIN</ion-button>
+          </div>
+          <div style="text-align: center;margin-top: 20px;">
+            <p style="margin-top: 10px;">OR</p>
+            <button style="background-color: transparent;" (click)="ChangeLoginType();">LOGIN WITH
+              MOBILE</button>
+            <p style="margin-top: 10px;">Don't Have an account?</p>
+            <ion-button expand="block" (click)="goToSignUp()">Register</ion-button>
+            <button style="margin-top: 10px;background-color: transparent;" (click)="ForgetPassword();">Forgot
+              Passowrd</button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="formToggle=='VerifyOTP'">
+        <ion-card-header style="text-align: center;">
+          <ion-card-title>VERIFY OTP</ion-card-title>
+        </ion-card-header>
+
+        <form novalidate style="margin-bottom: 40px;">
+
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="loginModel.otp" name="otp" placeholder="One Time Password">
+            <div style="text-align: left; font-size: 13px;">
+            </div>
+          </div>
+          <div style="margin-top: 10px;text-align: center;">
+            <ion-button (click)="verifyOtp()">VERIFY OTP</ion-button>
+          </div>
+          <div style="text-align: center;margin-top: 20px;">
+            <button style="background-color: transparent;" (click)="onResetOTP()">Resend OTP</button>
+          </div>
+        </form>
+      </div>
+      <!-- <div *ngIf="formToggle=='VerifyOTP'">
+        <form  class="form-horizontal" role="form" class="login-f">
+          <div class="form-group pt-2">
+            <label class="control-label visible-ie8 visible-ie9">Username</label>
+            <div class="input-icon">
+              <i class="fa fa-envelope-o"></i>
+              <input tabindex="1" name="UserOTP" [(ngModel)]="loginModel.otp" type="text"
+                class="form-control placeholder-no-fix input-s" placeholder="One Time Password">
+            </div>
+          </div>
+          <div class="form-actions form-actions-c pt-2">
+            <button type="button" [disabled]="!loginModel.email" (click)="verifyOtp()"
+              class="btn red btn-block uppercase sgin-btn">
+              VERIFY OTP
+            </button>
+          </div>
+          <div class="text-center">
+            <a (click)="onResetOTP()" class="forgot">Resend OTP?</a>
+          </div>
+        </form>
+      </div> -->
+    </ion-card>
+  </div>
+</ion-content>

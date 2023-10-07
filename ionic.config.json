@@ -1,0 +1,7 @@
+{
+  "name": "DigiNoticeIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
